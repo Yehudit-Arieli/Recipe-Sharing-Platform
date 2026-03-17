@@ -1,0 +1,308 @@
+.add-recipe-container {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+h2 {
+  color: #2d3436;
+  text-align: center;
+}
+
+.info-text {
+  text-align: center;
+  color: #636e72;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2d3436;
+}
+
+.info-note {
+  font-size: 0.8rem;
+  color: #d63031;
+  font-weight: normal;
+}
+
+input,
+textarea,
+select {
+  padding: 12px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s;
+  border-color: orange;
+}
+
+.ingredient-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+
+}
+
+.amount-input {
+  width: 80px;
+}
+
+.unit-input {
+  width: 100px;
+}
+
+.product-input {
+  flex: 1;
+}
+
+.remove-btn {
+  background: #ff7675;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-ing-btn {
+  background: white;
+  border: 1px dashed orange;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 5px;
+  color: #2d3436;
+}
+
+.add-ing-btn:hover {
+  background: rgb(252, 245, 231);
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #ff7675;
+  background-color: #fff5f5;
+}
+
+.error {
+  color: #d63031;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.row .form-group {
+  flex: 1;
+}
+
+.preview img {
+  max-width: 200px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: 2px solid orange;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: orange;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.submit-btn:disabled {
+  background: #b2bec3;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.7;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: rgb(243, 207, 140);
+  transform: translateY(-2px);
+}
+
+.upload-container {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  border: 2px dashed orange;
+  border-radius: 12px;
+  background-color: rgb(252, 245, 231);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.upload-container:hover {
+  background-color: #fcf8f5;
+  border-color: orange;
+}
+
+#file-upload {
+  display: none;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+  width: 100%;
+}
+
+.upload-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.upload-text {
+  font-weight: 700;
+  color: #2d3436;
+  font-size: 1.1rem;
+}
+
+.upload-subtext {
+  font-size: 0.8rem;
+  color: orange;
+  margin-top: 5px;
+}
+
+.preview-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.preview-wrapper img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.change-image-btn {
+  margin-top: 12px;
+  padding: 6px 16px;
+  background: #2d3436;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.change-image-btn:hover {
+  background: #000;
+  transform: scale(1.05);
+}
+
+.upload-container.has-image {
+  border: 1.5px solid #dfe6e9;
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .add-recipe-container {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ingredient-row {
+    flex-wrap: wrap;
+    background: #fdfdfd;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .product-input {
+    width: 100%;
+    flex: none;
+    order: 1;
+  }
+
+  .amount-input {
+    width: calc(50% - 25px);
+    order: 2;
+  }
+
+  .unit-input {
+    width: calc(50% - 25px);
+    order: 3;
+  }
+
+  .remove-btn {
+    order: 4;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-container {
+    min-height: 140px;
+  }
+
+  .upload-icon {
+    font-size: 30px;
+  }
+
+  .upload-text {
+    font-size: 1rem;
+  }
+}

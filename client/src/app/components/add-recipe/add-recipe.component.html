@@ -1,0 +1,102 @@
+<div class="add-recipe-container" dir="rtl">
+  <h2>הוספת מתכון חדש</h2>
+  <p class="info-text">כל השדות המסומנים ב-* הם חובה</p>
+
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>שם המתכון *</label>
+      <input type="text" formControlName="title" placeholder="לדוגמה: עוגת גבינה פירורים">
+      <small class="error" *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched">
+        שם המתכון חייב להכיל לפחות 3 תווים
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>תיאור קצר *</label>
+      <textarea formControlName="description" placeholder="ספרי קצת על המנה..."></textarea>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label>זמן הכנה (דקות) *</label>
+        <input type="number" formControlName="prep_time">
+      </div>
+      <div class="form-group">
+        <label>רמת קושי *</label>
+        <select formControlName="difficulty">
+          <option value="" disabled selected>בחרי קושי</option>
+          <option value="קל">קל</option>
+          <option value="בינוני">בינוני</option>
+          <option value="קשה">קשה</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>כשרות *</label>
+        <select formControlName="kosher_type">
+          <option value="" disabled selected>בחרי כשרות</option>
+          <option value="פרווה">פרווה</option>
+          <option value="חלבי">חלבי</option>
+          <option value="בשרי">בשרי</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        רכיבים * <span class="info-note">(חובה להכניס לפחות רכיב אחד מלא - שם, כמות ויחידה)</span>
+      </label>
+
+      <div *ngFor="let ing of ingredientsList; let i = index" class="ingredient-row">
+        <input type="number" [(ngModel)]="ing.amount" (ngModelChange)="saveIngredientsToDraft()"
+          [ngModelOptions]="{standalone: true}" placeholder="כמות" class="amount-input">
+
+        <select [(ngModel)]="ing.unit" (ngModelChange)="saveIngredientsToDraft()" [ngModelOptions]="{standalone: true}"
+          class="unit-input">
+          <option value="" disabled selected>יחידה</option>
+          <option value="גרם">גרם</option>
+          <option value="קילו">קילו</option>
+          <option value="כוס">כוס</option>
+          <option value="כף">כף</option>
+          <option value="כפית">כפית</option>
+          <option value="יחידה">יחידה</option>
+        </select>
+
+        <input type="text" [(ngModel)]="ing.product_name" (ngModelChange)="saveIngredientsToDraft()"
+          [ngModelOptions]="{standalone: true}" placeholder="שם הרכיב" class="product-input">
+
+        <button type="button" class="remove-btn" (click)="removeIngredient(i)"
+          *ngIf="ingredientsList.length > 1">✖</button>
+      </div>
+
+      <button type="button" class="add-ing-btn" (click)="addIngredient()">+ הוסף רכיב נוסף</button>
+    </div>
+
+    <div class="form-group">
+      <label>הוראות הכנה *</label>
+      <textarea formControlName="instructions" rows="6"></textarea>
+    </div>
+
+    <div class="form-group upload-section">
+      <label>בחירת תמונה (חובה) *</label>
+
+      <div class="upload-container" [class.has-image]="imagePreview">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" id="file-upload">
+
+        <label for="file-upload" class="upload-label" *ngIf="!imagePreview">
+          <div class="upload-icon">📸</div>
+          <span class="upload-text">לחצי כאן להעלאת תמונה</span>
+          <span class="upload-subtext">JPEG, PNG או WebP</span>
+        </label>
+
+        <div *ngIf="imagePreview" class="preview-wrapper">
+          <img [src]="imagePreview" alt="תצוגה מקדימה">
+          <label for="file-upload" class="change-image-btn">החלפת תמונה</label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="recipeForm.invalid || !selectedFile || !isIngredientsValid" class="submit-btn">
+      שמור מתכון וצור גלריה
+    </button>
+  </form>
+</div>

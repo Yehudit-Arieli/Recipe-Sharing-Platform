@@ -1,0 +1,84 @@
+<div class="profile-container" dir="rtl">
+  <h1 class="profile-main-title">
+    המטבח של <span class="highlight">{{ user?.username }}</span>
+  </h1>
+
+  <div class="inner-nav">
+    <button (click)="activeTab = 'settings'" [class.active]="activeTab === 'settings'">
+      <span class="material-icons">settings</span> הגדרות חשבון
+    </button>
+  </div>
+
+  <div class="tab-content">
+    <div *ngIf="activeTab === 'settings'" class="profile-card">
+
+      <div class="avatar-circle">
+        <img *ngIf="user?.profile_image && user.profile_image.includes('uploads'); else letterAvatar"
+          [src]="user.profile_image" class="profile-img-preview">
+
+        <ng-template #letterAvatar>
+          <div class="initial-letter">{{ user?.username?.[0] | uppercase }}</div>
+        </ng-template>
+      </div>
+
+      <div class="user-info-grid">
+        <div class="info-item">
+          <label>שם משתמש:</label>
+          <span>{{ user?.username }}</span>
+        </div>
+
+        <div class="info-item">
+          <label>אימייל:</label>
+          <span>{{ user?.email }}</span>
+        </div>
+
+        <div class="info-item">
+          <label>סיסמה:</label>
+          <span>{{ user?.password ? '●'.repeat(user.password.length) : '******' }}</span>
+        </div>
+
+        <div class="info-item">
+          <label>מצב משתמש:</label>
+          <span class="role-badge" [ngClass]="user?.role">{{ user?.role }}</span>
+        </div>
+
+        <div class="status-description">
+          <p>{{ getRoleDescription() }}</p>
+        </div>
+
+        <button class="main-edit-btn" (click)="openEditModal()">
+          <span class="material-icons">edit</span> עריכת פרטים ותמונה
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showEditModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>עריכת פרופיל</h2>
+        <button class="close-btn" (click)="showEditModal = false">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="input-group">
+          <label>שם משתמש חדש:</label>
+          <input type="text" [(ngModel)]="editData.username">
+        </div>
+        <div class="input-group">
+          <label>סיסמה חדשה (הנוכחית מוצגת ברקע):</label>
+          <input type="text" [(ngModel)]="editData.password" [placeholder]="user?.password || 'הזן סיסמה'">
+        </div>
+        <div class="input-group">
+          <label>תמונת פרופיל:</label>
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="showEditModal = false">ביטול</button>
+        <button class="save-btn" (click)="saveProfileChanges()">שמור שינויים</button>
+      </div>
+    </div>
+  </div>
+</div>

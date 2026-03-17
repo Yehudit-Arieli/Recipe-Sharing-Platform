@@ -1,0 +1,18 @@
+<div class="fridge-page" dir="rtl">
+  <h1>פותחים מקרר ומתחילים לבשל</h1>
+  <p class="subtitle">מגוון מתכונים מתאימים למה שיש לך עכשיו במקרר</p>
+
+  <div class="gif-wrapper">
+    <img src="assets/images/myfridgeicon.gif" alt="Fridge Animation">
+  </div>
+
+  <div class="input-container">
+    <h2>אז מה יש במקרר? אנחנו סקרנים :)</h2>
+    <p>אם ברשותכם מספר מוצרים - הפרידו אותם בפסיק ואז רווח</p>
+
+    <input type="text" [(ngModel)]="ingredients" (keyup.enter)="searchRecipes()"
+      placeholder="לדוגמא: חלב, שקדים, ביצה, תותים">
+
+    <button (click)="searchRecipes()" class="find-btn">תראו לי מתכונים</button>
+  </div>
+</div>

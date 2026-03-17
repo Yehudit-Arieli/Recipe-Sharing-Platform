@@ -1,0 +1,121 @@
+<div class="home-wrapper" dir="rtl">
+
+  <header class="hero-section">
+    <div class="hero-bg" [style.backgroundImage]="'url(assets/images/home/' + heroImages[currentIndex] + ')'">
+      <button class="arrow-btn prev" (click)="prevSlide()">&#10094;</button>
+      <button class="arrow-btn next" (click)="nextSlide()">&#10095;</button>
+      <div class="hero-overlay">
+        <div class="hero-text">
+          <h1>מבשלים תשוקה בכל מנה</h1>
+          <p>הצטרפו למסע קולינרי בטעם של בית</p>
+          <button (click)="goToRecipes()" class="btn-primary">לכל המתכונים</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="featured-section">
+    <h2 class="title">אולי תאהבו</h2>
+
+    <div class="featured-slider-wrapper" *ngIf="allRecipes.length > 0; else loading">
+      <button class="slider-nav-btn next" (click)="nextFeatured()">&#10095;</button>
+
+      <div class="slider-viewport">
+        <div class="recipe-track" [style.transform]="'translateX(' + (featuredIndex * (100 / 4)) + '%)'">
+          <div *ngFor="let r of allRecipes" class="featured-image-item" (click)="goToDetails(r.id)">
+            <img [src]="'http://localhost:5000/' + r.original_image_path" [alt]="r.title">
+            <div class="image-overlay-name">
+              <span>{{ r.title }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="slider-nav-btn prev" (click)="prevFeatured()">&#10094;</button>
+    </div>
+
+    <ng-template #loading>
+      <p class="status-msg">טוען נתונים...</p>
+    </ng-template>
+  </section>
+
+
+</div>
+
+<section class="testimonials-section">
+  <h2 class="title">מה הבשלנים שלנו אומרים</h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="quote-icon">"</div>
+      <p class="comment-text">המתכון לעוגת הגבינה פשוט מושלם! הילדים חיסלו הכל תוך עשר דקות. תודה רבה! <br>⭐⭐⭐⭐</p>
+      <div class="user-info">
+        <span class="user-name">חנה כהן</span>
+        <span class="user-date">לפני יומיים</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="quote-icon">"</div>
+      <p class="comment-text">חיפשתי המון זמן מתכון ללחם מחמצת אמיתי, והמדריך כאן היה הכי ברור שמצאתי.<br>⭐⭐⭐⭐⭐</p>
+      <div class="user-info">
+        <span class="user-name">יוסי לוי</span>
+        <span class="user-date">לפני שבוע</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="quote-icon">"</div>
+      <p class="comment-text">האתר מעוצב מקסים והמתכונים תמיד מצליחים לי. ממליצה בחום על הקינמוניות!<br>⭐⭐⭐</p>
+      <div class="user-info">
+        <span class="user-name">רחל אברהם</span>
+        <span class="user-date">לפני חודש</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-modern">
+  <div class="about-header">
+    <h4 class="upper-title">הסיפור מאחורי התנור</h4>
+    <h2 class="main-title">Pastry Shop — אהבה שנאפתה לאט</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="about-container">
+    <div class="about-visual">
+      <div class="image-frame-wrapper">
+        <img src="assets/images/home/about.jpg" alt="Cooking" class="about-main-img">
+      </div>
+    </div>
+
+    <div class="about-content">
+      <p class="description">
+        הכל התחיל בין קירות המטבח הקטן שלנו בבני ברק, כשריח של שמרים טריים וסוכר חום מילא את הבית בכל בוקר. מה שהחל
+        כניסוי וטעייה בין ספרי בישול ישנים, הפך עם השנים לשליחות: להנגיש את אמנות האפייה והבישול לכל בית בישראל.
+      </p>
+
+      <div class="full-story" [class.show]="showFullStory">
+        <p class="description">
+          ב-Pastry Shop אנחנו מאמינים שאוכל טוב הוא לא רק שילוב של מצרכים, אלא שפה של אהבה, זיכרונות וחיבור בין אנשים.
+          כל מתכון שעולה לאתר עובר מסע – מהבחירה הקפדנית של חומרי הגלם, דרך עשרות ניסיונות של דיוק טעמים, ועד שהוא מגיע
+          למטבח שלכם.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">150+</span>
+          <p class="stat-label">מתכונים סודיים</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">12k</span>
+          <p class="stat-label">בשלנים מרוצים</p>
+        </div>
+      </div>
+
+      <button class="read-more-btn" (click)="toggleStory()">
+        {{ showFullStory ? 'פחות סיפור...' : 'הסיפור המלא שלנו' }}
+      </button>
+    </div>
+  </div>
+</section>

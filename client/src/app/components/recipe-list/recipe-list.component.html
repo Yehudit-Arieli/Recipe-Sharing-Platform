@@ -1,0 +1,104 @@
+<div class="filter-status-container" *ngIf="currentIngredients" dir="rtl">
+  <div class="filter-badge">
+    <span>מציג מתכונים לפי מה שיש לך במקרר: <b>{{ currentIngredients }}</b></span>
+    <button class="clear-fridge-btn" (click)="clearFridgeFilter()">ביטול סינון מקרר X</button>
+  </div>
+</div>
+
+<div class="filter-sidebar" [class.open]="isSidebarOpen" dir="rtl">
+  <div class="sidebar-header">
+    <div class="header-content">
+      <h3>סינון ומיון</h3>
+      <div class="header-line"></div>
+    </div>
+    <button class="close-btn" (click)="toggleSidebar()">×</button>
+  </div>
+
+  <div class="sidebar-body">
+    <div class="filter-section" [class.active]="isKosherSectionOpen">
+      <button class="accordion-header" (click)="toggleKosherSection()">
+        סנן לפי כשרות
+        <span class="arrow-icon">{{ isKosherSectionOpen ? '−' : '+' }}</span>
+      </button>
+      <div class="accordion-content" *ngIf="isKosherSectionOpen">
+        <div class="checkbox-group" *ngFor="let type of kosherOptions">
+          <label class="checkbox-item">
+            <input type="checkbox" [checked]="selectedKosherTypes.includes(type)" (change)='onKosherChange(type)'>
+            <span class="custom-checkmark"></span>
+            <span class="label-text">{{ type }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-section" [class.active]="isDifficultySectionOpen">
+      <button class="accordion-header" (click)="toggleDifficultySection()">
+        סנן לפי דרגת קושי
+        <span class="arrow-icon">{{ isDifficultySectionOpen ? '−' : '+' }}</span>
+      </button>
+      <div class="accordion-content" *ngIf="isDifficultySectionOpen">
+        <div class="checkbox-group" *ngFor="let level of difficultyOptions">
+          <label class="checkbox-item">
+            <input type="checkbox" [checked]="selectedDifficulties.includes(level)"
+              (change)='onDifficultyChange(level)'>
+            <span class="custom-checkmark"></span>
+            <span class="label-text">{{ level }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-section" [class.active]="isSortSectionOpen">
+      <button class="accordion-header" (click)="toggleSortSection()">
+        מיון לפי זמן הכנה
+        <span class="arrow-icon">{{ isSortSectionOpen ? '−' : '+' }}</span>
+      </button>
+      <div class="accordion-content" *ngIf="isSortSectionOpen">
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" [checked]="currentSortOrder === 'asc'" (change)="onSortChange('asc')">
+            <span class="custom-checkmark"></span>
+            <span class="label-text">מהקצר לארוך</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" [checked]="currentSortOrder === 'desc'" (change)="onSortChange('desc')">
+            <span class="custom-checkmark"></span>
+            <span class="label-text">מהארוך לקצר</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar-overlay" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
+
+<div class="container">
+  <div class="actions-bar" dir="rtl">
+    <button class="filter-btn" (click)="toggleSidebar()">
+      <span class="filter-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      סנן ומיין
+    </button>
+  </div>
+
+  <h1 class="page-title">המתכונים שלנו</h1>
+
+  <div *ngIf="loading" class="spinner-container">
+    <div class="loader"></div>
+    <p>מעדכן תוצאות...</p>
+  </div>
+
+  <div class="recipe-grid" *ngIf="!loading">
+    <app-recipe-card *ngFor="let r of recipes" [recipe]="r" [userRole]="currentUserRole"
+      (deleteEvent)="handleDelete($event)">
+    </app-recipe-card>
+  </div>
+
+  <div *ngIf="recipes.length === 0 && !loading" class="no-results">
+    <p>אופס... לא נמצאו מתכונים שתואמים לסינון שבחרת 🍳</p>
+  </div>
+</div>

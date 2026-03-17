@@ -1,0 +1,56 @@
+<div class="header-top">
+  <a routerLink="/" class="big-logo-container">
+    <img src="assets/images/logo.png" alt="MyRecipes Logo" class="big-logo-img">
+  </a>
+</div>
+
+<nav class="navbar">
+
+  <div class="nav-right">
+    <a routerLink="/open-fridge" class="fridge-capsule">
+      <div class="red-section">
+        <img src="assets/images/myfridgeicon.gif" alt="מקרר">
+      </div>
+      <div class="black-section">
+        <span class="main-text">פותחים מקרר ומתחילים לבשל</span>
+        <span class="sub-text">מגוון מתכונים מתאימים למה שיש לך עכשיו במקרר</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="nav-left">
+    <div class="search-box">
+      <span class="material-icons">search</span>
+      <input type="text" placeholder="חיפוש מתכון..." class="clean-input" (input)="onSearchChange($event)">
+    </div>
+
+    <a routerLink="/recipes" class="nav-link"><span>הצגת מתכונים</span></a>
+
+    <ng-container *ngIf="user$ | async as user">
+      <a routerLink="/profile" class="nav-link"><span>אזור אישי</span></a>
+
+      <a *ngIf="user.role === 'admin' || user.role === 'editor'" routerLink="/add-recipe" class="nav-link"><span>הוספת
+          מתכון</span></a>
+      <a *ngIf="user.role === 'admin'" routerLink="/admin-panel" class="nav-link"><span>הצגת כל הבקשות</span></a>
+      <a *ngIf="user.role === 'user'" (click)="requestPermission()" class="nav-icon"
+        title="שלח בקשה למנהל להפוך למשתמש תוכן">
+        <span class="material-icons">mail</span>
+      </a>
+
+      <span class="username">שלום {{ user.username }}</span>
+
+      <a (click)="onLogout()" class="nav-icon" title="יציאה מהחשבון">
+        <span class="material-icons" style="transform: scaleX(-1); display: inline-block;">logout</span>
+      </a>
+    </ng-container>
+
+    <ng-container *ngIf="!(user$ | async)">
+      <a routerLink="/login" class="nav-icon" title="כניסה">
+        <span class="material-icons">login</span>
+      </a>
+      <a routerLink="/register" class="nav-icon" title="רישום">
+        <span class="material-icons">person_add</span>
+      </a>
+    </ng-container>
+  </div>
+</nav>

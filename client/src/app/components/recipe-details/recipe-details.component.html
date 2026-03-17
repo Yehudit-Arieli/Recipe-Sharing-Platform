@@ -1,0 +1,52 @@
+<div class="recipe-details-container" *ngIf="recipe" dir="rtl">
+  <button class="back-btn" (click)="goBack()">→ חזרה </button>
+
+  <div class="main-content">
+
+    <div class="image-gallery">
+      <div class="main-image-wrapper">
+        <img [src]="fullImageUrl" [alt]="recipe.title" class="featured-image">
+
+        <div class="gallery-nav" *ngIf="allImages.length > 1">
+          <button (click)="prevImage()">❮</button>
+          <button (click)="nextImage()">❯</button>
+        </div>
+      </div>
+
+      <div class="gallery-dots" *ngIf="allImages.length > 1">
+        <span *ngFor="let img of allImages; let i = index" [class.active]="i === currentImageIndex"
+          (click)="currentImageIndex = i"></span>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h1 class="recipe-title">{{ recipe.title }}</h1>
+      <p class="recipe-description">{{ recipe.description }}</p>
+
+      <div class="meta-tags">
+        <span class="tag">⏱ {{ recipe.prep_time }} דקות</span>
+        <span class="tag">📊 {{ recipe.difficulty }}</span>
+        <span class="tag">{{ recipe.kosher_type }}</span>
+      </div>
+
+      <div class="details-box">
+        <h3>מצרכים:</h3>
+        <ul class="ingredients-list">
+          <li *ngFor="let ing of recipe.ingredients">
+            <span class="ing-amount">{{ ing.amount }} </span>
+            <span class="ing-unit">{{ ing.unit }} </span>
+            <span class="ing-name">{{ ing.product_name }} </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="details-box">
+        <h3>הוראות הכנה:</h3>
+        <div class="instructions-text">
+          {{ recipe.instructions }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

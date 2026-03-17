@@ -1,0 +1,38 @@
+<div class="admin-container">
+  <h2>ניהול בקשות הרשאה</h2>
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>שם משתמש</th>
+        <th>אימייל</th>
+        <th>תאריך</th>
+        <th>סטטוס</th>
+        <th>פעולות</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let req of requests">
+        <td>{{ req.username }}</td>
+        <td>{{ req.email }}</td>
+        <td>{{ req.date }}</td>
+        <td>
+          <span [class]="'status-badge ' + req.status">
+            {{ req.status === 'pending' ? 'ממתין' : (req.status === 'approved' ? 'אושר' : 'נדחה') }}
+          </span>
+        </td>
+        <td class="actions">
+          <div class="action-buttons">
+            <button (click)="approve(req.id)" title="אשר" class="btn-action btn-v">
+              <span class="icon">✓</span>
+            </button>
+            <button (click)="reject(req.id)" title="דחה" class="btn-action btn-x">
+              <span class="icon">×</span>
+            </button>
+            <button (click)="deleteReq(req.id)" title="מחק מהטבלה" class="btn-bin">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

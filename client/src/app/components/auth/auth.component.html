@@ -1,0 +1,45 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>{{ isLoginMode ? 'כניסה' : 'הרשמה' }}</h2>
+
+    <form (ngSubmit)="authForm.valid && onSubmit()" #authForm="ngForm" novalidate>
+
+      <div class="form-group">
+        <label>אימייל:</label>
+        <input type="email" [(ngModel)]="email" name="email" required
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #emailField="ngModel">
+        <div class="error-msg" *ngIf="emailField.invalid && (emailField.touched || authForm.submitted)">
+          <span *ngIf="emailField.errors?.['required']">שדה אימייל הוא חובה</span>
+          <span *ngIf="emailField.errors?.['pattern']">כתובת אימייל לא תקינה</span>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label>שם מלא:</label>
+        <input type="text" [(ngModel)]="username" name="username" required pattern="^[a-zA-Zא-ת\s]{2,}$"
+          #nameField="ngModel">
+        <div class="error-msg" *ngIf="nameField.invalid && (nameField.touched || authForm.submitted)">
+          <span *ngIf="nameField.errors?.['required']">שם הוא שדה חובה</span>
+          <span *ngIf="nameField.errors?.['pattern']">השם חייב להכיל לפחות 2 אותיות</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>סיסמה:</label>
+        <input type="password" [(ngModel)]="password" name="password" required minlength="6" #passField="ngModel">
+        <div class="error-msg" *ngIf="passField.invalid && (passField.touched || authForm.submitted)">
+          <span *ngIf="passField.errors?.['required']">סיסמה היא שדה חובה</span>
+          <span *ngIf="passField.errors?.['minlength']">הסיסמה חייבת להכיל לפחות 6 תווים</span>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="isLoading || authForm.invalid">
+        {{ isLoading ? 'מבצע פעולה...' : (isLoginMode ? 'התחבר' : 'צור חשבון') }}
+      </button>
+    </form>
+
+    <p (click)="toggleMode()" class="toggle-link">
+      {{ isLoginMode ? 'אין לך חשבון? הירשם כאן' : 'כבר רשום? לחץ להתחברות' }}
+    </p>
+  </div>
+</div>

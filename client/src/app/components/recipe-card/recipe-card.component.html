@@ -1,0 +1,45 @@
+<div class="recipe-card" dir="rtl">
+  <div class="image-container">
+    <img *ngIf="recipe.original_image_path" [src]="imageUrl" [alt]="recipe.title">
+    <div *ngIf="!recipe.original_image_path" class="placeholder-img">🍳</div>
+
+    <div *ngIf="recipe.missing_ingredients && recipe.missing_ingredients.length > 0" class="missing-overlay-wrapper">
+      <button (click)="showMissing = !showMissing" class="toggle-missing-btn" type="button">
+        חסרים לך {{ recipe.missing_ingredients.length }} רכיבים
+        <span class="arrow" [class.up]="showMissing">{{ showMissing ? '▲' : '▼' }}</span>
+      </button>
+
+      <div *ngIf="showMissing" class="missing-list-overlay">
+        <div class="overlay-header">רכיבים חסרים:</div>
+        <ul>
+          <li *ngFor="let item of recipe.missing_ingredients">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="kosher-badge" [ngClass]="{
+        'kosher-meat': recipe.kosher_type === 'בשרי',
+        'kosher-dairy': recipe.kosher_type === 'חלבי',
+        'kosher-parve': recipe.kosher_type === 'פרווה'
+      }">
+      {{ recipe.kosher_type }}
+    </span>
+    <button class="delete-btn" *ngIf="userRole === 'admin' " (click)="onDeleteClick($event)" title="מחק מתכון">
+      🗑️
+    </button>
+
+  </div>
+  <div class="card-content">
+    <h3>{{ recipe.title }}</h3>
+    <p class="description">{{ recipe.description }}</p>
+    <div class="recipe-details">
+      <span class="prep-time">
+        <span class="material-icons clock-icon">schedule</span>
+        {{ recipe.prep_time }} דק'
+      </span>
+      <span class="difficulty">📊 {{ recipe.difficulty }}</span>
+    </div>
+
+    <button class="details-btn" [routerLink]="['/recipe-details', recipe.id]">למתכון המלא</button>
+  </div>
+</div>

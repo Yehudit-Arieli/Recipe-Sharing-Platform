@@ -1,0 +1,226 @@
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:5px 0;
+  background-color: #ffffff;
+}
+
+.big-logo-img {
+  height: 150px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;    
+  border-bottom: 1px solid #ddd; 
+  direction: rtl;
+  font-family: 'Assistant', sans-serif;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.fridge-capsule {
+  display: flex;
+  align-items: center;
+  background-color: #000;
+  border-radius: 50px;
+  text-decoration: none;
+  overflow: hidden;
+  height: 65px; 
+  transition: transform 0.3s ease;
+}
+
+.fridge-capsule:hover {
+  transform: scale(1.03);
+}
+
+.red-section {
+  background-color: orange;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.red-section img {
+  height: 40px;
+}
+
+.black-section {
+  padding: 0 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.black-section .main-text {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.black-section .sub-text {
+  font-size: 11px;
+  color: #ccc;
+  margin-top: 2px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 19px;
+  position: relative;
+  padding: 8px 10px;
+}
+
+.nav-link:hover {
+  color: orange;
+}
+
+.nav-link span::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -2px;
+  right: 0;
+  background-color: orange;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover span::after {
+  width: 100%;
+}
+
+.username {
+  color: orange;
+  font-weight: 700;
+  font-size: 20px;
+  padding-right: 15px;
+  border-right: 1px solid #eee;
+}
+
+.nav-icon {
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+  transition: color 0.2s;
+  cursor: pointer; 
+}
+
+.nav-icon:hover {
+  color: orange;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.clean-input {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 3px 5px;
+  outline: none;
+  background: transparent;
+  width: 130px;
+  font-family: 'Assistant', sans-serif;
+}
+
+.big-logo-img {
+  height: 150px;
+  width: auto;
+  transition: transform 0.3s ease; 
+  cursor: pointer;
+}
+
+.big-logo-img:hover {
+  transform: scale(1.1); 
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .nav-link {
+    font-size: 17px; 
+    padding: 8px 5px;
+  }
+
+  .big-logo-img {
+    height: 120px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    padding: 10px 0;
+  }
+
+  .big-logo-img {
+    height: 100px;
+  }
+
+  .navbar {
+    flex-direction: column; 
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .nav-right, .nav-left {
+    width: 100%;
+    justify-content: center; 
+    flex-wrap: wrap;
+  }
+
+  .fridge-capsule {
+    height: 55px; 
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .clean-input {
+    width: 100px; 
+  }
+
+  .username {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-left {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+
+  .black-section .main-text {
+    font-size: 13px;
+  }
+}
