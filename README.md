@@ -2,7 +2,17 @@
 
 A full-stack recipe platform featuring user authentication, admin management, and advanced search capabilities.
 
-[🎥 Watch the 30s Demo](PUT_YOUR_VIDEO_LINK_HERE)
+
+## 🎥 Demo Video
+
+<p align="center">
+  <a href="https://drive.google.com/file/d/1kXgsBL50NXIZpPgTU_lXWsvb2liPNhHW/view?usp=sharing">
+    <img src="https://img.icons8.com/color/144/google-drive--v1.png" width="100" alt="Google Drive Icon">
+    <br>
+    <strong>Click here to watch the project demonstration on Google Drive</strong>
+  </a>
+</p>
+
 
 ---
 
