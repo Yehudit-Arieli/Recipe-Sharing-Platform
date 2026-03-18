@@ -34,6 +34,14 @@ Monorepo structure containing:
 ![Home Page](./screenshots/home.png)
 ![Recipe Page](./screenshots/recipe.png)
 ![Admin Panel](./screenshots/admin.png)
+![fridge Panel](./screenshots/fridge.png)
+![add-recipe Panel](./screenshots/add-recipe.png)
+![open-fridge Panel](./screenshots/open-fridge.png)
+![all-recipe Panel](./screenshots/all-recipe.png)
+![Register Panel](./screenshots/Register.png)
+
+
+
 
 ---
 
