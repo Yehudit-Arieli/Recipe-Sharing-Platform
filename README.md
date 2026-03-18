@@ -1,54 +1,56 @@
-\# Recipe Sharing Platform
+# Recipe Sharing Platform 🍳
 
+A full-stack recipe platform featuring user authentication, admin management, and advanced search capabilities.
 
+[🎥 Watch the 30s Demo](PUT_YOUR_VIDEO_LINK_HERE)
 
-A full-stack web application for sharing, discovering, and managing recipes.
+---
 
+## ✨ Core Features
+* 🔐 **Authentication:** Secure login & signup using JWT
+* 👩‍🍳 **Recipe Management:** Create, edit, and delete recipes (full CRUD)
+* 🔍 **Advanced Search:** Filter recipes by ingredients and categories
+* 🛠️ **Admin Dashboard:** Manage users and content efficiently
+* 🖼️ **Image Handling:** Upload and process recipe images
 
+---
 
-\## Project Architecture
+## 🛠️ Tech Stack
+* **Frontend:** Angular (TypeScript, HTML, CSS)
+* **Backend:** Python, Flask (REST API)
+* **Database:** MySQL with SQLAlchemy ORM
+* **Authentication:** JWT (Flask-JWT-Extended)
 
+---
 
+## 🏗️ Architecture
+Monorepo structure containing:
+* `/client` – Angular frontend
+* `/server` – Flask backend API
 
-This repository is organized as a monorepo containing both the frontend and backend:
+---
 
-\* `/client` - The frontend application (Angular).
+## 📸 Visual Preview
+![Home Page](./screenshots/home.png)
+![Recipe Page](./screenshots/recipe.png)
+![Admin Panel](./screenshots/admin.png)
 
-\* `/server` - The backend REST API (Python \& Flask).
+---
 
+## 🚀 Quick Setup
 
-
-\## Tech Stack
-
-
-
-\* \*\*Frontend:\*\* Angular, TypeScript, HTML, CSS
-
-\* \*\*Backend:\*\* Python, Flask, Flask-JWT-Extended (Authentication)
-
-\* \*\*Database:\*\* MySQL, SQLAlchemy
-
-\* \*\*Image Processing:\*\* Pillow (PIL)
-
-
-
-\## Setup and Installation
-
-
-
-\### 1. Server Setup (Backend)
-
-Navigate to the server directory and set up the Python environment:
-
+### Backend
 ```bash
-
 cd server
-
 python -m venv venv
-
-venv\\Scripts\\activate      # On Windows
-
+venv\Scripts\activate
 pip install -r requirements.txt
-
 python app.py
+```
 
+### Frontend
+```bash
+cd client
+npm install
+ng serve
+```
