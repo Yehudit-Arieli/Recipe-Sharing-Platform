@@ -49,11 +49,7 @@ Monorepo structure containing:
 | Recipe Details | <img src="./screenshots/recipe.png" width="150"/> |
 | Add Recipe | <img src="./screenshots/add-recipe.png" width="150"/> |
 | Fridge Search | <img src="./screenshots/open-fridge.png" width="150"/> |
-| Profile Results | <img src="./screenshots/profile.png" width="150"/> |
 | Admin Panel | <img src="./screenshots/admin.png" width="150"/> |
-| Registration | <img src="./screenshots/Register.png" width="150"/> |
-
-
 
 
 ---
